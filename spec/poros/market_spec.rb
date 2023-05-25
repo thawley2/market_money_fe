@@ -16,6 +16,7 @@ RSpec.describe Market do
 
     market = Market.new(market_data)
 
+    expect(market.id).to eq('123')
     expect(market.name).to eq('Farmers')
     expect(market.street).to eq('123 South st')
     expect(market.city).to eq('Littleton')
