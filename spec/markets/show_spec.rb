@@ -43,9 +43,7 @@ RSpec.describe '/markets/:id', type: :feature do
 
           expect(current_path).to eq(vendor_path(vendor.id))
         end
-
       end
     end
   end
 end
-# 55297
