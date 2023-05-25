@@ -72,5 +72,7 @@ group :test do
   gem 'orderly'
   gem 'simplecov'
   gem 'rspec-rails'
+  gem 'webmock'
+  gem 'vcr'
 end
 
