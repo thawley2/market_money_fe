@@ -32,6 +32,10 @@ class MarketMoneyFacade
     end
   end
 
+  def vendor
+    @_vendor ||= Vendor.new(vendor_data)
+  end
+
   private
     def service
       @_service ||= MarketMoneyService.new
@@ -47,5 +51,9 @@ class MarketMoneyFacade
 
     def market_vendors_data
       @_market_vendors_data ||= service.find_market_vendors(@id)[:data]
+    end
+
+    def vendor_data
+      @_vendor_data ||= service.find_vendor(@id)[:data]
     end
 end
