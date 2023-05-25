@@ -1,5 +1,5 @@
 class VendorsController < ApplicationController
   def show
-    @facade = MarketMoneyFacade.new(params[:id])
+    @vendor = MarketMoneyFacade.new(params[:id]).vendor
   end
 end
