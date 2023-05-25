@@ -8,6 +8,10 @@ class MarketMoneyService
     get_url("/api/v0/markets/#{id}")
   end
 
+  def find_market_vendors(id)
+    get_url("/api/v0/markets/#{id}/vendors")
+  end
+
   def conn 
     Faraday.new(url: 'http://localhost:3000')
   end
