@@ -9,4 +9,12 @@ class Vendor
     @contact_phone = data[:attributes][:contact_phone]
     @credit_accepted = data[:attributes][:credit_accepted]
   end
+
+  def credit_accepted?
+    if @credit_accepted
+      'YES'
+    else
+      'NO'
+    end
+  end
 end
