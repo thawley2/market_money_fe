@@ -49,4 +49,30 @@ RSpec.describe MarketMoneyFacade do
       expect(vendor.credit_accepted).to be_in([true, false])
     end
   end
+
+  describe 'instance helper methods' do
+    describe '#market_name' do
+      it 'returns the name of the market', :vcr do
+        facade = MarketMoneyFacade.new(322474)
+
+        expect(facade.market_name).to eq(facade.market.name)
+      end
+    end
+
+    describe '#market_street' do
+      it 'returns the street name of the market', :vcr do
+        facade = MarketMoneyFacade.new(322474)
+
+        expect(facade.market_street).to eq(facade.market.street)
+      end
+    end
+
+    describe '#market_city_state_zip' do
+      it 'returns the city state and zip of a market', :vcr do
+        facade = MarketMoneyFacade.new(322474)
+
+        expect(facade.market_city_state_zip).to eq("#{facade.market.city}, #{facade.market.state} #{facade.market.zip}")
+      end
+    end
+  end
 end
