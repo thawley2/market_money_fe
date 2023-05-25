@@ -39,5 +39,23 @@ RSpec.describe MarketMoneyService do
       expect(market[:attributes]).to have_key(:state)
       expect(market[:attributes]).to have_key(:zip)
     end
+
+    it 'Can retrieve a list of vendors for a market', :vcr do
+      vendors = MarketMoneyService.new.find_market_vendors(322474)
+      
+      expect(vendors).to have_key(:data)
+      expect(vendors[:data]).to be_an Array
+      expect(vendors[:data].first).to have_key(:id)
+      expect(vendors[:data].first).to have_key(:attributes)
+
+      vendors[:data].each do |vendor|
+        vendor_list = vendor[:attributes]
+        expect(vendor_list).to have_key(:name)
+        expect(vendor_list).to have_key(:description)
+        expect(vendor_list).to have_key(:contact_name)
+        expect(vendor_list).to have_key(:contact_phone)
+        expect(vendor_list).to have_key(:credit_accepted)
+      end
+    end
   end
 end
