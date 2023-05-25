@@ -7,7 +7,7 @@ RSpec.describe '/markets', type: :feature do
       VCR.use_cassette('all_markets', :allow_playback_repeats => true) do
 
         markets = MarketMoneyFacade.new.markets
-        visit '/markets'
+        visit markets_path
         
         expect(page).to have_content('Name')
         expect(page).to have_content('City')
@@ -29,9 +29,9 @@ RSpec.describe '/markets', type: :feature do
     end
 
     it "When I click a button to see more info on that market I'm taken to that market's show page '/markets/:id'" do
-      VCR.use_cassette('all_markets', :allow_playback_repeats => true) do
+      VCR.use_cassette('all_markets_with_show_path', :allow_playback_repeats => true) do
         markets = MarketMoneyFacade.new.markets
-        visit '/markets'
+        visit markets_path
 
         within "#market_#{markets.second.id}" do
           expect(page).to have_content(markets.second.name)
@@ -41,7 +41,7 @@ RSpec.describe '/markets', type: :feature do
 
           click_button('More Info')
 
-          expect(current_path).to eq("/markets/#{markets.second.id}")
+          expect(current_path).to eq(market_path(markets.second.id))
         end
       end
     end
