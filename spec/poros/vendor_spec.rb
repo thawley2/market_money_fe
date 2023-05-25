@@ -22,4 +22,25 @@ RSpec.describe Vendor do
     expect(vendor.contact_phone).to eq('5807616264')
     expect(vendor.credit_accepted).to eq(true)
   end
+
+  describe 'instance methods' do
+    describe '#credit_accepted?' do
+      it 'returns YES or NO' do
+        vendor_data = {
+          id: '123',
+          attributes: {
+            name: 'Farmers', 
+            description: 'Yummy',
+            contact_name: 'Steve',
+            contact_phone: '5807616264',
+            credit_accepted: true
+          }
+        }
+    
+        vendor = Vendor.new(vendor_data)
+
+        expect(vendor.credit_accepted?).to eq('YES')
+      end
+    end
+  end
 end
