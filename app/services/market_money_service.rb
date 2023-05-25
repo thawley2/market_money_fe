@@ -4,6 +4,10 @@ class MarketMoneyService
     get_url('/api/v0/markets')
   end
 
+  def find_market(id)
+    get_url("/api/v0/markets/#{id}")
+  end
+
   def conn 
     Faraday.new(url: 'http://localhost:3000')
   end
