@@ -14,6 +14,12 @@ class MarketMoneyFacade
     @_market ||= Market.new(market_data)
   end
 
+  def market_vendors
+    @_market_vendors ||= market_vendors_data.map do |market_vendor|
+      Vendor.new(market_vendor)
+    end
+  end
+
   private
     def service
       @_service ||= MarketMoneyService.new
@@ -25,5 +31,9 @@ class MarketMoneyFacade
 
     def market_data
       @_market_data ||= service.find_market(@id)[:data]
+    end
+
+    def market_vendors_data
+      @_market_vendors_data ||= service.find_market_vendors(@id)[:data]
     end
 end
