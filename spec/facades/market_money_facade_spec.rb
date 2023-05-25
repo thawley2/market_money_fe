@@ -32,4 +32,21 @@ RSpec.describe MarketMoneyFacade do
       expect(market.zip).to be_a String
     end
   end
+
+  describe 'Market Vendors' do
+    it 'returns an array of Vendor objects for a specific Market', :vcr do
+      vendors = MarketMoneyFacade.new(322474).market_vendors
+
+      expect(vendors).to be_an Array
+      expect(vendors.first).to be_a Vendor
+      
+      vendor = vendors.first
+
+      expect(vendor.name).to be_a String
+      expect(vendor.description).to be_a String
+      expect(vendor.contact_name).to be_a String
+      expect(vendor.contact_phone).to be_a String
+      expect(vendor.credit_accepted).to be_in([true, false])
+    end
+  end
 end
