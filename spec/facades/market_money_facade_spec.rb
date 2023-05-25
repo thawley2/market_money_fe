@@ -50,6 +50,19 @@ RSpec.describe MarketMoneyFacade do
     end
   end
 
+  describe 'Vendor' do
+    it 'returns a single vendor object', :vcr do
+      vendor = MarketMoneyFacade.new(55297).vendor
+      
+      expect(vendor.name).to be_a String
+      expect(vendor.description).to be_a String
+      expect(vendor.contact_name).to be_a String
+      expect(vendor.contact_phone).to be_a String
+      expect(vendor.credit_accepted).to be_in([true, false])
+
+    end
+  end
+
   describe 'instance helper methods' do
     describe '#market_name' do
       it 'returns the name of the market', :vcr do
