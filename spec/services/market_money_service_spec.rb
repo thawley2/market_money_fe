@@ -57,5 +57,18 @@ RSpec.describe MarketMoneyService do
         expect(vendor_list).to have_key(:credit_accepted)
       end
     end
+
+    it 'Can return a vendors data by id', :vcr do
+      vendor = MarketMoneyService.new.find_vendor(55297)
+
+      expect(vendor).to have_key(:data)
+      expect(vendor[:data]).to have_key(:id)
+      expect(vendor[:data]).to have_key(:attributes)
+      expect(vendor[:data][:attributes]).to have_key(:name)
+      expect(vendor[:data][:attributes]).to have_key(:contact_name)
+      expect(vendor[:data][:attributes]).to have_key(:contact_phone)
+      expect(vendor[:data][:attributes]).to have_key(:description)
+      expect(vendor[:data][:attributes]).to have_key(:credit_accepted)
+    end
   end
 end
