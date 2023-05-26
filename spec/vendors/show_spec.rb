@@ -4,7 +4,7 @@ RSpec.describe '/vendors/:id', type: :feature do
   describe 'When I visit the vendors show page' do
     it 'I see the vendor name and all of its attributes' do
       VCR.use_cassette('vendor_show', :allow_playback_repeats => true) do
-        vendor = MarketMoneyFacade.new(55297).vendor
+        vendor = VendorsFacade.new(55297).vendor
   
         visit vendor_path(vendor.id)
 

@@ -1,9 +1,9 @@
 class MarketsController < ApplicationController
   def index
-    @facade = MarketMoneyFacade.new
+    @facade = MarketsFacade.new
   end
 
   def show
-    @facade = MarketMoneyFacade.new(params[:id])
+    @facade = MarketsFacade.new(params[:id])
   end
 end

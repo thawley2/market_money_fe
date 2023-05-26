@@ -4,7 +4,7 @@ RSpec.describe '/markets/:id', type: :feature do
   describe 'When I visit a markets show page' do
     it 'I see the markets name and address as headers' do
       VCR.use_cassette('markets_show', :allow_playback_repeats => true) do
-        facade = MarketMoneyFacade.new(322474)
+        facade = MarketsFacade.new(322474)
         market = facade.market
         visit market_path(322474)
         
@@ -17,7 +17,7 @@ RSpec.describe '/markets/:id', type: :feature do
 
     it 'I see a list of vendor names that are at that market' do
       VCR.use_cassette('markets_show', :allow_playback_repeats => true) do
-        facade = MarketMoneyFacade.new(322474)
+        facade = MarketsFacade.new(322474)
         visit market_path(322474)
 
         expect(page).to have_content('Vendors at our Market:')
@@ -32,7 +32,7 @@ RSpec.describe '/markets/:id', type: :feature do
 
     it 'Each vendor name is a link to their show page' do
       VCR.use_cassette('markets_show_click_link', :allow_playback_repeats => true) do
-        facade = MarketMoneyFacade.new(322474)
+        facade = MarketsFacade.new(322474)
         vendor = facade.market_vendors.first
         visit market_path(322474)
 

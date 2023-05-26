@@ -6,7 +6,7 @@ RSpec.describe '/markets', type: :feature do
     it 'I see all markets listed with their name, city and state' do
       VCR.use_cassette('all_markets', :allow_playback_repeats => true) do
 
-        markets = MarketMoneyFacade.new.markets
+        markets = MarketsFacade.new.markets
         visit markets_path
         
         expect(page).to have_content('Name')
@@ -30,7 +30,7 @@ RSpec.describe '/markets', type: :feature do
 
     it "When I click a button to see more info on that market I'm taken to that market's show page '/markets/:id'" do
       VCR.use_cassette('all_markets_with_show_path', :allow_playback_repeats => true) do
-        markets = MarketMoneyFacade.new.markets
+        markets = MarketsFacade.new.markets
         visit markets_path
 
         within "#market_#{markets.second.id}" do
