@@ -1,0 +1,14 @@
+<style>
+  h1 {text-align: center;}
+  h3 {text-align: center;}
+</style>
+
+<h1><%= @facade.market_name %></h1>
+<h3><%= @facade.market_street %></h3>
+<h3><%= @facade.market_city_state_zip %></h3>
+
+<p>Vendors at our Market:<p>
+
+<% @facade.market_vendors.each do |vendor| %>
+  <p id= "vendor_<%= vendor.id %>"><%= link_to vendor.name, vendor_path(vendor.id) %><p>
+<% end %>
